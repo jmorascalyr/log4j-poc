@@ -33,7 +33,7 @@ services:
       cve-net:
         ipv4_address: 172.16.238.12
     ports:
-      - "8888:8081"
+      - "8888:8080"
     depends_on:
       - "scalyr"
   cve-poc:
