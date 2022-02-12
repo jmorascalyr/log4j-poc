@@ -1,5 +1,14 @@
 version: "3.9"
 services:
+  scalyr:
+    container_name: scalyr-docker-agent
+    environment:
+        - SCALYR_API_KEY=${SCALYR_API_KEY}
+    volumes:
+        - '/var/run/docker.sock:/var/scalyr/docker.sock'
+        - '/var/lib/docker/containers:/var/lib/docker/containers'
+    image: scalyr/scalyr-agent-docker-json
+
   cve-web:
     build: cve-web
     hostname: websvr
@@ -12,6 +21,8 @@ services:
         ipv4_address: 172.16.238.10
     ports:
       - "8080:8080"
+    depends_on:
+      - "scalyr"
   cve-neo:
     build: cve-neo
     hostname: neosvr
@@ -24,6 +35,8 @@ services:
         ipv4_address: 172.16.238.12
     ports:
       - "8888:8080"
+    depends_on:
+      - "scalyr"
   cve-poc:
     build: cve-poc
     hostname: ldapsvr
@@ -36,6 +49,8 @@ services:
     networks:
       cve-net:
         ipv4_address: 172.16.238.11
+    depends_on:
+      - "scalyr"
 networks:
   cve-net:
     driver: bridge
