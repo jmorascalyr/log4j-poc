@@ -10,34 +10,6 @@ services:
         - '/var/lib/docker/containers:/var/lib/docker/containers'
     image: scalyr/scalyr-agent-docker-json
 
-  cve-web:
-    build: cve-web
-    hostname: websvr
-    domainname: range.lab
-    environment:
-      - POC_USERNAME=user
-      - POC_PASSWORD=1qaz2wsx
-    networks:
-      cve-net:
-        ipv4_address: 172.16.238.10
-    ports:
-      - "8080:8080"
-    depends_on:
-      - "scalyr"
-  cve-neo:
-    build: cve-neo
-    hostname: neosvr
-    domainname: range.lab
-    environment:
-      - TOMCAT_USERNAME=bob
-      - TOMCAT_PASSWORD=3edc4rfv
-    networks:
-      cve-net:
-        ipv4_address: 172.16.238.12
-    ports:
-      - "8888:8080"
-    depends_on:
-      - "scalyr"
   cve-poc:
     build: cve-poc
     hostname: ldapsvr
