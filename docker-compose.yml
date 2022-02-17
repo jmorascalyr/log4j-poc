@@ -19,22 +19,8 @@ services:
       - POC_PORT=80
       - LISTENER_ADDR=10.10.10.31
       - LISTENER_PORT=9001
-    networks:
-      cve-net:
-        ipv4_address: 172.16.238.11
     depends_on:
       - "scalyr"
-networks:
-  cve-net:
-    driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-          gateway: 172.16.238.1
-
 # ldap
 # rmi
 # dns
