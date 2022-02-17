@@ -17,9 +17,6 @@ services:
     environment:
       - POC_USERNAME=user
       - POC_PASSWORD=1qaz2wsx
-    networks:
-      cve-net:
-        ipv4_address: 172.16.238.10
     ports:
       - "8080:8080"
     depends_on:
@@ -38,16 +35,6 @@ services:
       - "8888:8080"
     depends_on:
       - "scalyr"
-networks:
-  cve-net:
-    driver: bridge
-    driver_opts:
-      com.docker.network.enable_ipv6: "false"
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-          gateway: 172.16.238.1
 
 # ldap
 # rmi
