@@ -28,9 +28,6 @@ services:
     environment:
       - TOMCAT_USERNAME=bob
       - TOMCAT_PASSWORD=3edc4rfv
-    networks:
-      cve-net:
-        ipv4_address: 172.16.238.12
     ports:
       - "8888:8080"
     depends_on:
