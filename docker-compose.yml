@@ -15,12 +15,14 @@ services:
     hostname: ldapsvr
     domainname: ldapsvr.test
     environment:
-      - POC_ADDR=172.16.238.11
+      - POC_ADDR=10.10.10.32
       - POC_PORT=80
       - LISTENER_ADDR=10.10.10.31
       - LISTENER_PORT=9001
     depends_on:
       - "scalyr"
+    ports:
+      - "1337:1337"    
 # ldap
 # rmi
 # dns
